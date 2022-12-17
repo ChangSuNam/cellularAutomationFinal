@@ -4,13 +4,82 @@
 </head>
 
 <body>
-  <main>
-  </main>
-  <br>
-  <button class="playButton">Play</button>
-  <button class="resetButton">Clear tiles</button>
-  <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.js"></script>
-  <script src="cellularAutomata.js"></script>
+
+  <p>Play abstraction cellular automata </p>
+  <form action="cellularAutomata.html">
+    <button class="btn btn-danger btn-lg">Go</button>
+  </form>
+
+
+
+  <div>
+    <h2>Abstraction Cellular Automata</h2>
+    <p>
+      I implemented automated composition with abstraction. By abstraction, I mean that the player does not have to
+      worry about what is going on with the webAudio components. Factors that determine some components such as pitch
+      and speed are hidden to the users, and they are unable to manually set it. By playing the game, they choose what
+      sound they are playing. </p>
+
+    <p>
+      Using "https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.js", I created cellular
+      automata- Game of Life. One can click several cells on a 2d matrix and click play to generate sound. The sound
+      changes as the cells live/die.
+
+    </p>
+    <p>
+      Rule of the game:
+    <ul>
+      -A live cell with 2 or 3 live neighbors survives to the next round.</ul>
+    <ul>
+      -A live cell with 4 or more neighbors dies of overpopulation.</ul>
+    <ul>
+      -A live cell with 1 or 0 neighbors dies of isolation.</ul>
+    <ul>
+      -An empty cell with exactly 3 neighbors becomes a live cell in the next round.</ul>
+
+    </p>
+    <br>
+
+    <p>
+      Specifications of the sound effect:
+    <ul>
+      -Waveform: When a cell reaches a wall, a specific waveform is added to list of potential waveform to be set.</ul>
+    <ul>
+      -FM Synthesis: change pitch by altering modulator frequency and gain value- they are proportional to current alive
+      cells. </ul>
+    <ul>
+      -Speed: with alive/total cell ratio, change both the speed of sound and game. </ul>
+    <ul>
+      -Randomness: using row as i and column as j, when (i+j)%3 equals to 0 or 1, play an oscillator with specific
+      frequency determined by i and j.</ul>
+    <ul>
+      -Game over: when all cells die, a specific sound created with additive synthesis is played. Using
+      setTargetAtTime(0, audioCtx.currentTime, 0.8), create dramatic, long lasting sound effect</ul>
+
+    </p>
+    <br>
+    <p>
+      In addition, I added an oscilloscope using webAudio analyser. Setting its FFT frequency domain as 512, so that the
+      graph is not too squished. Player can view the visual of the sound that the game is creating at the moment they
+      click the "view oscilloscope" button, as the game pauses and same sound effect is played when viewing the
+      oscilloscope.
+    </p>
+
+
+    <p>
+      Combining visual components with sound was very satisfying and interesting- rather than letting sound control the
+      visuals like we did in class, in this project my initial selection of cells affected the sound output.
+    </p>
+
+    <br>
+    <br>
+    The codes for the project described above can be found here:
+    https://github.com/ChangSuNam/cellularAutomationFinal
+
+
+  </div>
+
 </body>
+
 
 </html>
